@@ -491,5 +491,3 @@ $(function () {
       options: salesGraphChartOptions
     })
   })
-  
-  
