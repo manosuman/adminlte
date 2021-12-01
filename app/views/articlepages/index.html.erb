@@ -21,7 +21,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title" >Articles List</h3>
+            <h3 class="card-title" ></h3>
             <div class="card-tools">
               <div class="input-group input-group-sm" style="width: 150px;">
                 <a href="<%= new_articlepage_path %>"> <button type="button" class="btn btn-primary">Create Articles</button></a>
@@ -31,7 +31,7 @@
           <!-- /.card-header -->
           <p id="para"></p>
           <div class="card-body table-responsive p-0">
-            <table class="table table-hover text-nowrap">
+            <table id="mytab" class="table table-hover text-nowrap">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -40,9 +40,8 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody id="tb">
-              <tr id="tab">
-              </tr>
+              <tbody>
+
               </tbody>
             </table>
           </div>
@@ -55,19 +54,28 @@
 </body> 
 
 <script>
-
+var a = '<%= articlepages_path %>'
+var x
 $('#article').click (function(){
   $.ajax({
     url: "/articles",
     type: "GET",
     // dataType: 'JSON',
     success: function(data){
-      $("#para").html(data.article[0]);
-      // window.location.href = "/articlepages?Authorization="+ data.token;
-      console.log(data.article[0])
-      window.location.href = "/articlepages?Authorization="+ data.token;
+      x = data
+      // if(data.token){
+      //     const token  = localStorage.setItem("token", data.token);
+      //     window.location.href = "/articlepages?Authorization="+ data.token;
+      // } 
     }
   });
 });
+for(i=0;i <= x.article.length; i++){
+  $("#mytab > tbody").append(`<tr><td>${x.article[i].id}</td><td>${x.article[i].title}</td><td>${x.article[i].body}</td><td><span class="tag tag-success">
+  <a href="/articlepages/${x.article[i].id}"><button type="button" id="btn" class="btn btn-primary"><i class="far fa-eye"></i></button></a>
 
+  <a href="/articlepages/${x.article[i].id}/edit"><button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+
+  <a href="/articlepages/${x.article[i].id}" data-method="delete"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></span></td></tr>`)
+}
 </script>

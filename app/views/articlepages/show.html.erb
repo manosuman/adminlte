@@ -59,4 +59,15 @@
         </div>
         <a href="<%= articlepages_path %>"><button type="button" class="btn btn-info">Back</button></a>
     </body>
-</html>
+<script>
+var x
+$('#btn').click (function(){
+  $.ajax({
+    url: "/articles/1",
+    type: "GET",
+    success: function(data){
+      console.log(data)
+    }
+  });
+});
+</script>
