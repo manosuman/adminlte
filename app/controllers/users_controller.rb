@@ -1,5 +1,12 @@
 class UsersController < JwtController
     before_action :authorized, only: [:auto_login]
+    
+    def index
+      if (logged_in?)
+        redirect_to home_path
+      end
+    end
+
     def new
       @user=User.new
     end

@@ -52,8 +52,9 @@
               </a>
             </li>
           </ul>
-          <li class="nav-item" >
-            <a href="<%=articlepages_path%>" id="article" class="nav-link">
+          <li class="nav-item" id="article">
+            <%# <button id="article" class="nav-link" onclick='getArticle()'> %>
+            <a href="/articlepages"  class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Articles
@@ -70,33 +71,37 @@
 
 
 <script>    
-  // $("#article").click(function(){
-  //     // debugger
-  //     $.ajax({
-  //     url: "/articles",
-  //     type: 'GET',
-  //     dataType: "JSON",
-  //     async: false,
-  //     // success: function(data) {
-  //       if(data.token){
-  //         const token  = localStorage.setItem("token", data.token);
-  //         // Simulate a mouse click:
-  //         window.location.href = "/articles?Authorization="+ data.token;
-  //       }        
-  //     }
-  //     });
-  // });
-//   function article(){
+// var a = '<%= articlepages_path %>'
+// var x
+
+// function getArticle(){
+//   alert("hello");
 //   $.ajax({
-//   url: "/articles",
-//   type: "GET",
-//   // dataType: 'JSON',
-//   success: function(data){
-//     // $("#tb").append(data.id);
-//     // window.location.href = "/articlepages?Authorization="+ data.token;
-//     console.log(data)
-//     window.location.href = "/articlepages?Authorization="+ data.token;
+//     url: "/articles",
+//     type: "GET",
+//     // dataType: 'JSON',
+//     success: function(data){
+//       x = data
+//       window.location.href = "/articlepages";
+//       // if(data.token){
+//       //     const token  = localStorage.setItem("token", data.token);
+//       // window.location.href = "/articlepages?Authorization="+ data.token;
+//       // } 
 //     }
-// });
+//   });
+// }
+
+// // $('#article').click (function(){
+  
+// // });
+// for(i=0;i <= x.article.length; i++){
+//   $("#mytab > tbody").append(`<tr><td>${x.article[i].id}</td><td>${x.article[i].title}</td><td>${x.article[i].body}</td><td><span class="tag tag-success">
+//   <a href="/articlepages/${x.article[i].id}"><button type="button" id="btn" class="btn btn-primary"><i class="far fa-eye"></i></button></a>
+
+//   <a href="/articlepages/${x.article[i].id}/edit"><button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+
+//   <a href="/articlepages/${x.article[i].id}" data-method="delete"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></span></td>
+
+//   <td><a href="/charges/new"><button type="button" class="btn btn-outline-primary">Subscribe</button></td></tr>`)
 // }
 </script>

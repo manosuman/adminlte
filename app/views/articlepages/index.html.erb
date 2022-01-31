@@ -56,26 +56,31 @@
 <script>
 var a = '<%= articlepages_path %>'
 var x
-$('#article').click (function(){
-  $.ajax({
-    url: "/articles",
-    type: "GET",
-    // dataType: 'JSON',
-    success: function(data){
-      x = data
-      // if(data.token){
-      //     const token  = localStorage.setItem("token", data.token);
-      //     window.location.href = "/articlepages?Authorization="+ data.token;
-      // } 
-    }
+$(document).ready(function(){
+  $('#article').click (function(){
+    $.ajax({
+      url: "/articles",
+      type: "GET",
+      // dataType: 'JSON',
+      success: function(data){
+        x = data
+        // if(data.token){
+        //     const token  = localStorage.setItem("token", data.token);
+            // window.location.href = "/articlepages?Authorization="+ data.token;
+        // } 
+        // window.location.href = "/articlepages";
+      }
+    });
   });
+  for(var i=0; i <= x.article.length; i++){
+    $("#mytab > tbody").append(`<tr><td>${x.article[i].id}</td><td>${x.article[i].title}</td><td>${x.article[i].body}</td><td><span class="tag tag-success">
+    <a href="/articlepages/${x.article[i].id}"><button type="button" id="btn" class="btn btn-primary"><i class="far fa-eye"></i></button></a>
+
+    <a href="/articlepages/${x.article[i].id}/edit"><button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+
+    <a href="/articlepages/${x.article[i].id}" data-method="delete"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></span></td>
+
+    <td><a href="/charges/new"><button type="button" class="btn btn-outline-primary">Subscribe</button></td></tr>`)
+  }
 });
-for(i=0;i <= x.article.length; i++){
-  $("#mytab > tbody").append(`<tr><td>${x.article[i].id}</td><td>${x.article[i].title}</td><td>${x.article[i].body}</td><td><span class="tag tag-success">
-  <a href="/articlepages/${x.article[i].id}"><button type="button" id="btn" class="btn btn-primary"><i class="far fa-eye"></i></button></a>
-
-  <a href="/articlepages/${x.article[i].id}/edit"><button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
-
-  <a href="/articlepages/${x.article[i].id}" data-method="delete"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></span></td></tr>`)
-}
 </script>

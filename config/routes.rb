@@ -13,5 +13,10 @@ Rails.application.routes.draw do
   get "/logout", to: "users#logout"
   get "/new", to: "users#new"
   root 'users#index'
+  resources :charges, only: [:new, :create]
+  # constraints(logged_in?) do 
+  #   root 'users#new'
+  # end
+  # root 'users#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
